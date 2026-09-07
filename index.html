@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Phantom Quality Tool">
+    <meta name="apple-mobile-web-app-title" content="INSANE Quality Tool">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#020406">
@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <title>PHANTOM QUALITY TOOL</title>
+    <title>INSANE QUALITY TOOL</title>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -84,7 +84,6 @@
             position: relative;
         }
 
-        /* Animated Background */
         body::before, body::after {
             content: '';
             position: fixed;
@@ -254,7 +253,6 @@
             border-color: rgba(255, 59, 48, 0.5) !important;
         }
         
-        /* Native Android Install Custom Trigger Button Styling */
         .btn-android-install { 
             display: none; 
             background: linear-gradient(135deg, rgba(0, 242, 255, 0.15), rgba(0, 255, 170, 0.15)) !important; 
@@ -296,7 +294,6 @@
             cursor: pointer;
         }
 
-        /* Customize file input button */
         input[type="file"]::file-selector-button {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -365,22 +362,22 @@
     <div id="auth-screen">
         <div class="liquid-card">
             <h2>SECURITY CHECK</h2>
-            <p id="auth-msg" class="subtitle">PHANTOM QUALITY TOOL</p>
+            <p id="auth-msg" class="subtitle">INSANE QUALITY TOOL</p>
             
             <button id="authBtn" class="pill-btn" onclick="requestKeyEntry()">ACTIVATE LICENSE</button>
             
-            <button id="androidInstallBtn" class="pill-btn btn-android-install"><i class="fa-solid fa-download" style="margin-right: 8px; color: var(--neon-green)"></i> INSTALL PHANTOM APP</button>
+            <button id="androidInstallBtn" class="pill-btn btn-android-install"><i class="fa-solid fa-download" style="margin-right: 8px; color: var(--neon-green)"></i> INSTALL INSANE APP</button>
             
             <div class="credits-footer">
                 <div class="made-with">MADE WITH ❤️ BY.</div>
                 <div class="social-container">
-                    <a href="https://www.tiktok.com/@faadiboii" target="_blank" class="social-item">
+                    <a href="https://www.tiktok.com/@insane__365" target="_blank" class="social-item">
                         <i class="fab fa-tiktok"></i>
-                        <span class="social-username">@faadiboii</span>
+                        <span class="social-username">@insane__365</span>
                     </a>
                     <a href="https://www.instagram.com/faadiboii" target="_blank" class="social-item">
                         <i class="fab fa-instagram"></i>
-                        <span class="social-username">@faadiboii</span>
+                        <span class="social-username">@insane__365</span>
                     </a>
                 </div>
             </div>
@@ -398,7 +395,7 @@
                 </div>
             </div>
 
-            <h2>PHANTOM QUALITY TOOL</h2>
+            <h2>INSANE QUALITY TOOL</h2>
             <p class="subtitle">BINARY METADATA OPTIMIZER</p>
             
             <div class="file-box"><input type="file" id="fileInput" accept="video/mp4,video/quicktime,.mov,.MOV"></div>
@@ -431,13 +428,13 @@
             <div class="credits-footer">
                 <div class="made-with">MADE WITH ❤️ BY.</div>
                 <div class="social-container">
-                    <a href="https://www.tiktok.com/@faadiboii" target="_blank" class="social-item">
+                    <a href="https://www.tiktok.com/@insane__365" target="_blank" class="social-item">
                         <i class="fab fa-tiktok"></i>
-                        <span class="social-username">@faadiboii</span>
+                        <span class="social-username">@insane__365</span>
                     </a>
                     <a href="https://www.instagram.com/faadiboii" target="_blank" class="social-item">
                         <i class="fab fa-instagram"></i>
-                        <span class="social-username">@faadiboii</span>
+                        <span class="social-username">@insane__365</span>
                     </a>
                 </div>
             </div>
@@ -445,20 +442,14 @@
     </div>
 
 <script>
-    const SUPABASE_ENDPOINT_URL = "https://xvffvaohqirrlebhcgjt.supabase.co/functions/v1/verify-phantom";
-    const HARDCODED_PASS = "PhantomSecureCoreEngineV2026";
+    const HARDCODED_PASS = "INSANESecureCoreEngineV2026";
 
-    // --- NATIVE ANDROID LIFE CYCLE INSTALL AUTOMATION ROUTINE ---
     let deferredInstallPrompt = null;
     const androidBtn = document.getElementById('androidInstallBtn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent older Android Chrome UI from flashing the default tiny bottom text bar
         e.preventDefault();
-        // Hold onto the trigger event so we can fire it precisely when our button is clicked
         deferredInstallPrompt = e;
-        
-        // Show our clean stylized button right underneath the activation button
         if (androidBtn) {
             androidBtn.style.display = 'block';
         }
@@ -467,37 +458,17 @@
     if (androidBtn) {
         androidBtn.addEventListener('click', async () => {
             if (!deferredInstallPrompt) return;
-            
-            // Pop the official Google Play lookalike app system layout on screen
             deferredInstallPrompt.prompt();
-            
-            // Wait for the user execution state response
             const { outcome } = await deferredInstallPrompt.userChoice;
-            if (outcome === 'accepted') {
-                console.log('User deployed the app onto their Android device container.');
-            }
-            
-            // Dissolve the setup prompt element completely
             deferredInstallPrompt = null;
             androidBtn.style.display = 'none';
         });
     }
 
-    // Clean execution confirmation flag if app is already running inside Standalone PWA view
     window.addEventListener('appinstalled', () => {
         if (androidBtn) androidBtn.style.display = 'none';
         deferredInstallPrompt = null;
     });
-
-    // Anti-DevTools Watcher
-    setInterval(function() {
-        const start = performance.now();
-        debugger; 
-        if (performance.now() - start > 50) {
-            document.body.innerHTML = "<h1>Environment Modification Detected</h1>";
-            throw new Error("Tampering detected");
-        }
-    }, 400);
 
     function requestKeyEntry() {
         const userKey = prompt("Enter License Key:");
@@ -511,7 +482,7 @@
         if (authBtn.disabled || authBtn.innerText === "VERIFYING...") return;
 
         if(authMsg) {
-            authMsg.innerText = "Verifying Identity...";
+            authMsg.innerText = "Processing Decryption...";
             authMsg.style.color = "#00f2ff";
         }
 
@@ -520,95 +491,66 @@
         authBtn.style.cursor = "not-allowed";
         authBtn.innerText = "VERIFYING...";
 
-        const fingerprint = navigator.userAgent + window.screen.width + window.screen.height + navigator.language;
-        
         try {
-            const response = await fetch(SUPABASE_ENDPOINT_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    action: "verify",
-                    key: licenseKey,
-                    info: fingerprint
-                })
-            });
+            const encResponse = await fetch('app.enc');
+            const packet = await encResponse.json();
 
-            const result = await response.json();
+            const cipherBytes = new Uint8Array(packet.ciphertext.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+            const ivBytes = new Uint8Array(packet.iv.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+            const saltBytes = new Uint8Array(packet.salt.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+            const tagBytes = new Uint8Array(packet.tag.match(/.{1,2}/g).map(b => parseInt(b, 16)));
 
-            if (result.authorized) {
-                const encResponse = await fetch('app.enc');
-                const packet = await encResponse.json();
+            const combinedPayload = new Uint8Array(cipherBytes.length + tagBytes.length);
+            combinedPayload.set(cipherBytes);
+            combinedPayload.set(tagBytes, cipherBytes.length);
 
-                const cipherBytes = new Uint8Array(packet.ciphertext.match(/.{1,2}/g).map(b => parseInt(b, 16)));
-                const ivBytes = new Uint8Array(packet.iv.match(/.{1,2}/g).map(b => parseInt(b, 16)));
-                const saltBytes = new Uint8Array(packet.salt.match(/.{1,2}/g).map(b => parseInt(b, 16)));
-                const tagBytes = new Uint8Array(packet.tag.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+            const encoder = new TextEncoder();
+            const rawMaterial = await crypto.subtle.importKey("raw", encoder.encode(HARDCODED_PASS), "PBKDF2", false, ["deriveKey"]);
+            const decryptionKey = await crypto.subtle.deriveKey(
+                { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
+                rawMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
+            );
 
-                const combinedPayload = new Uint8Array(cipherBytes.length + tagBytes.length);
-                combinedPayload.set(cipherBytes);
-                combinedPayload.set(tagBytes, cipherBytes.length);
+            const clearBuffer = await crypto.subtle.decrypt({ name: "AES-GCM", iv: ivBytes, tagLength: 128 }, decryptionKey, combinedPayload);
+            let clearTextScript = new TextDecoder().decode(clearBuffer);
 
-                const encoder = new TextEncoder();
-                const rawMaterial = await crypto.subtle.importKey("raw", encoder.encode(HARDCODED_PASS), "PBKDF2", false, ["deriveKey"]);
-                const decryptionKey = await crypto.subtle.deriveKey(
-                    { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
-                    rawMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
-                );
+            localStorage.setItem('INSANE_key', licenseKey);
 
-                const clearBuffer = await crypto.subtle.decrypt({ name: "AES-GCM", iv: ivBytes, tagLength: 128 }, decryptionKey, combinedPayload);
-                let clearTextScript = new TextDecoder().decode(clearBuffer);
-
-                localStorage.setItem('phantom_key', licenseKey);
-
-                // --- HYPER JUMP TRANSITION ---
-                if (window.particleWarp) {
-                    window.particleWarp(25);
-                    setTimeout(() => window.particleWarp(1), 800);
-                }
-
-                // Delay removing the auth screen to sync with jump (at 500ms)
-                setTimeout(() => {
-                    const authScreen = document.getElementById('auth-screen');
-                    if(authScreen) authScreen.remove();
-
-                    const bootstrapper = new Function(clearTextScript);
-                    bootstrapper();
-
-                    setTimeout(() => {
-                        const slideBanner = document.getElementById('usageAlertBanner');
-                        if (slideBanner) {
-                            slideBanner.style.maxHeight = "100px";
-                            slideBanner.style.opacity = "1";
-                            slideBanner.style.marginBottom = "20px";
-                            slideBanner.style.borderWidth = "1px";
-                            
-                            setTimeout(() => {
-                                slideBanner.style.maxHeight = "0px";
-                                slideBanner.style.opacity = "0";
-                                slideBanner.style.marginBottom = "0px";
-                                slideBanner.style.borderWidth = "0px";
-                            }, 6000);
-                        }
-                    }, 300);
-
-                    clearTextScript = null;
-                }, 500);
-            } else {
-                alert(result.message || "Invalid Key!");
-                if(authMsg) {
-                    authMsg.innerText = "PHANTOM QUALITY TOOL";
-                    authMsg.style.color = "rgba(255, 255, 255, 0.6)";
-                }
-                authBtn.disabled = false;
-                authBtn.style.opacity = "1";
-                authBtn.style.cursor = "pointer";
-                authBtn.innerText = "ACTIVATE LICENSE";
+            if (window.particleWarp) {
+                window.particleWarp(25);
+                setTimeout(() => window.particleWarp(1), 800);
             }
+
+            setTimeout(() => {
+                const authScreen = document.getElementById('auth-screen');
+                if(authScreen) authScreen.remove();
+
+                const bootstrapper = new Function(clearTextScript);
+                bootstrapper();
+
+                setTimeout(() => {
+                    const slideBanner = document.getElementById('usageAlertBanner');
+                    if (slideBanner) {
+                        slideBanner.style.maxHeight = "100px";
+                        slideBanner.style.opacity = "1";
+                        slideBanner.style.marginBottom = "20px";
+                        slideBanner.style.borderWidth = "1px";
+                        
+                        setTimeout(() => {
+                            slideBanner.style.maxHeight = "0px";
+                            slideBanner.style.opacity = "0";
+                            slideBanner.style.marginBottom = "0px";
+                            slideBanner.style.borderWidth = "0px";
+                        }, 6000);
+                    }
+                }, 300);
+
+                clearTextScript = null;
+            }, 500);
+
         } catch (err) {
             console.error(err);
-            alert("Security Handshake or Decryption Failed.");
+            alert("Decryption Failed. Make sure app.enc matches HARDCODED_PASS.");
             if(authMsg) {
                 authMsg.innerText = "ACCESS REFUSED";
                 authMsg.style.color = "#ff3b30";
@@ -620,7 +562,6 @@
         }
     }
 
-    // Background Interactivity - Particle System
     document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementById('particle-canvas');
         if (!canvas) return;
@@ -634,7 +575,6 @@
             h = canvas.height = window.innerHeight;
             
             particles = [];
-            // Optimize for mobile by limiting particle count
             let count = Math.min(100, Math.floor((w * h) / 10000));
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle());
@@ -705,7 +645,6 @@
         };
         animate();
 
-        // Interaction Listeners
         const updateMouse = (e) => {
             let clientX = e.clientX;
             let clientY = e.clientY;
@@ -724,7 +663,6 @@
         document.addEventListener('mouseleave', () => mouse.active = false);
         document.addEventListener('touchend', () => { setTimeout(() => mouse.active = false, 1000); });
 
-        // Ripple Effect on Click
         const triggerRipple = (e) => {
             let clientX = e.clientX;
             let clientY = e.clientY;
@@ -743,7 +681,6 @@
             document.body.appendChild(ripple);
             setTimeout(() => { if (ripple.parentNode) ripple.remove(); }, 800);
 
-            // Brief particle warp
             window.particleWarp(4);
             setTimeout(() => window.particleWarp(1), 600);
         };
