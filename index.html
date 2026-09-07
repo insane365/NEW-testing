@@ -149,18 +149,18 @@
     <div id="app-content"></div>
 
     <script>
-        const HARDCODED_PASS = "INSANESecureCoreEngineV2026";
+        // Set this EXACTLY to the passphrase used during CryptoJS.AES.encrypt
+        const DECRYPTION_PASSPHRASE = "YOUR_EXACT_PASSPHRASE_HERE";
 
         async function handleAuth() {
             const keyInput = document.getElementById('licenseKeyInput').value.trim();
-            runDecryptionPipeline(keyInput || "BYPASS_KEY");
+            runDecryptionPipeline(keyInput);
         }
 
         async function runDecryptionPipeline(licenseKey) {
             const authMsg = document.getElementById('auth-msg');
-            const authBtn = document.getElementById('authBtn');
 
-            if(authMsg) {
+            if (authMsg) {
                 authMsg.innerText = "PROCESSING DECRYPTION...";
                 authMsg.style.color = "#00f2ff";
             }
@@ -168,24 +168,32 @@
             try {
                 const response = await fetch('app.enc');
                 if (!response.ok) {
-                    throw new Error("app.enc file nahi mili!");
+                    throw new Error("Unable to locate app.enc file.");
                 }
-                const encryptedData = await response.text();
+                const encryptedData = (await response.text()).trim();
 
-                const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, HARDCODED_PASS);
-                const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                // Decrypt into WordArray first
+                const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, DECRYPTION_PASSPHRASE);
+
+                // Safe conversion to UTF-8 string
+                let decryptedText = "";
+                try {
+                    decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                } catch (e) {
+                    throw new Error("Incorrect decryption passphrase or corrupted payload.");
+                }
 
                 if (!decryptedText) {
-                    throw new Error("Decryption Failed. Make sure app.enc matches HARDCODED_PASS.");
+                    throw new Error("Decryption returned empty string. Verify passphrase.");
                 }
 
                 localStorage.setItem('INSANE_key', licenseKey);
 
                 const authScreen = document.getElementById('auth-screen');
-                if(authScreen) authScreen.remove();
+                if (authScreen) authScreen.remove();
 
                 const appContent = document.getElementById('app-content');
-                if(appContent) appContent.style.display = 'block';
+                if (appContent) appContent.style.display = 'block';
 
                 const scriptEl = document.createElement('script');
                 scriptEl.text = decryptedText;
@@ -194,7 +202,7 @@
             } catch (err) {
                 console.error(err);
                 alert(err.message);
-                if(authMsg) {
+                if (authMsg) {
                     authMsg.innerText = "FAILED";
                     authMsg.style.color = "#ff3366";
                 }
